@@ -1,0 +1,14 @@
+import java.sql.SQLException;
+import java.util.HashSet;
+
+import com.example.db.dao.ReservationDAO;
+import com.example.db.soa.model.Reservation;
+
+public class Test {
+	public static void main(String[] args) throws SQLException {
+		ReservationDAO r = new ReservationDAO();
+		//c.addCustomer(new Customer("S1", new HashSet<Phonenumber>()));
+		for (Reservation rs : r.getAllReservation())
+			System.out.println(r);
+	}
+}

@@ -1,0 +1,22 @@
+package com.example.db.dao;
+
+import java.util.ArrayList;
+
+
+import org.hibernate.Session;
+import org.hibernate.annotations.Proxy;
+import org.hibernate.query.Query;
+
+import com.example.db.model.Room;
+
+@Proxy(lazy=false)
+public class RoomDAO {
+
+	public ArrayList<Room> getAllRoom() {
+		Session session = SessionUtil.getSession();
+		Query<Room> query = session.createQuery("from Room");
+		ArrayList<Room> rooms = (ArrayList<Room>) query.list();
+		session.close();
+		return rooms;
+	}
+}

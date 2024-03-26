@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 26, 2024, 4:13:48 AM by Hibernate Tools 6.3.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="test" name="com.example.db.model.Reservationdetail" optimistic-lock="none" table="reservationdetail">
+        <id name="rdId" type="java.lang.Integer">
+            <column name="rdID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="com.example.db.model.Reservation" fetch="select" name="reservation">
+            <column name="reservationID" not-null="true"/>
+        </many-to-one>
+        <property name="date" type="date">
+            <column length="10" name="Date" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+package com.example.db.dao;
+
+import java.util.ArrayList;
+
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import com.example.db.model.Reservation;
+
+public class ReservationDAO {
+
+	public ArrayList<Reservation> getAllReservation() {
+		Session session = SessionUtil.getSession();
+		Query query = session.createQuery("from Reservation");
+		ArrayList<Reservation> reservations = (ArrayList<Reservation>) query.list();
+		session.close();
+		return reservations;
+	}
+	public Reservation getReservation() {
+	    Session session = SessionUtil.getSession();
+	    Reservation reservation = null;
+	    try {
+	        Query<Reservation> query = session.createQuery("from reservation where reID = :reId", Reservation.class);
+	        query.setParameter("reId", 2);
+	        reservation = query.uniqueResult();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return reservation;
+	}
+}

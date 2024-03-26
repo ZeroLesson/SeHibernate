@@ -1,0 +1,19 @@
+package com.example.db.dao;
+
+import java.util.ArrayList;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import com.example.db.model.Room;
+import com.example.db.model.Roomstatus;
+
+public class RoomStatusDAO {
+	public ArrayList<Roomstatus> getAllRoom() {
+		Session session = SessionUtil.getSession();
+		Query<Roomstatus> query = session.createQuery("from roomstatus");
+		ArrayList<Roomstatus> rooms = (ArrayList<Roomstatus>) query.list();
+		session.close();
+		return rooms;
+	}
+}

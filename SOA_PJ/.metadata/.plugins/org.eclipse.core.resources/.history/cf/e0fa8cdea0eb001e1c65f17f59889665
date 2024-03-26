@@ -1,0 +1,32 @@
+package com.example.db.dao;
+
+import java.util.ArrayList;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import com.example.db.model.Room;
+
+public class RoomDAO {
+
+    public ArrayList<Room> getAllRoom() {
+        Session session = null;
+        ArrayList<Room> rooms = new ArrayList<>();
+
+        try {
+            session = SessionUtil.getSession();
+            Query<Object[]> query = session.createQuery("SELECT r, rs FROM Room r JOIN FETCH r.roomstatus rs", Object[].class);
+            // สร้าง ArrayList เพื่อเก็บข้อมูล Room ที่เราต้องการ
+            for (Object[] result : query.list()) {
+                Room room = (Room) result[0];
+                rooms.add(room);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+
+        return rooms;
+    }
+}

@@ -1,0 +1,12 @@
+package com.example.db.dao;
+
+import java.util.ArrayList;
+
+import com.example.db.model.Reservation;
+
+public class ReservationDAO {
+	
+	public ArrayList<Reservation> getAllReservation(){
+		
+	}
+}

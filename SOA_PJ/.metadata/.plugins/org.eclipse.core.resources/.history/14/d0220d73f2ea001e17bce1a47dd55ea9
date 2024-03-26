@@ -1,0 +1,21 @@
+package com.example.db.dao;
+
+import java.util.ArrayList;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+
+import com.example.db.model.Reservation;
+
+public class ReservationDAO {
+
+	public ArrayList<Reservation> getAllReservation() {
+		Session session = SessionUtil.getSession();
+		Query query = session.createQuery("from Reservation");
+		@SuppressWarnings("deprecation")
+		ArrayList<Reservation> reservations = (ArrayList<Reservation>) query.list();
+		session.close();
+		return reservations;
+	}
+}

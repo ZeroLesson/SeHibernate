@@ -1,0 +1,27 @@
+package com.example.db.controller;
+
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.example.db.dao.ReservationDAO;
+import com.example.db.model.Reservation;
+
+public class ReservationService {
+	private Log LOGGER = LogFactory.getLog(ReservationService.class);
+	//Customer c = new Customer();
+	public static ReservationDAO resDao = new ReservationDAO(); 
+	 @GET
+	 @Path("/reservations") 
+	 @Produces(MediaType.APPLICATION_JSON)
+	 
+	 public List<Reservation> getUsers(){
+		 return resDao.getAllReservation();
+	 }
+}

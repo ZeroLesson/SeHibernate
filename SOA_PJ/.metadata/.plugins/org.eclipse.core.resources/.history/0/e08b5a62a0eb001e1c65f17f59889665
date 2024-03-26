@@ -1,0 +1,28 @@
+package com.example.db.dao;
+
+import java.util.ArrayList;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import com.example.db.model.Room;
+
+public class RoomDAO {
+
+	public ArrayList<Room> getAllRoom() {
+		Session session = null;
+		ArrayList<Room> rooms = new ArrayList<>();
+
+		try {
+			session = SessionUtil.getSession();
+			Query<Room> query = session.createQuery("from Room JOIN FETCH Roomstatus", Room.class);
+			rooms = (ArrayList<Room>) query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+
+		return rooms;
+	}
+}
